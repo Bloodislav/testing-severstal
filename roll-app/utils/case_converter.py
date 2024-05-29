@@ -1,5 +1,5 @@
 def camel_case_to_snake_case(input_str: str) -> str:
-    chars:list = []
+    chars: list = []
     for c_idx, char in enumerate(input_str):
         if c_idx and char.isupper():
             nxt_idx = c_idx + 1
