@@ -21,8 +21,8 @@ class RollDTO(BaseModel):
 
 
 class RollAverageValue(BaseModel):
-    mid_length: int
-    mid_weight: int
+    mid_length: float
+    mid_weight: float
 
 
 class RollMaxMin(BaseModel):

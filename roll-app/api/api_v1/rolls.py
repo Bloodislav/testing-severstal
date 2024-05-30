@@ -51,16 +51,15 @@ async def get_rolls(
         RollDTO,
         Depends(RollDTO),
     ],
-    offset: int = 0, limit: int = 10
 ):
     """ Get rolls with limit """
     result = await rolls_quary.get_rolls(
         session=session,
         filters=filters
     )
-    return result[offset:][:limit]
+    return result
 
-@router.get("", response_model=RollStatDTO)
+@router.get("/stats", response_model=RollStatDTO)
 async def get_statistic(
     session: Annotated[
         AsyncSession,
@@ -69,4 +68,6 @@ async def get_statistic(
     from_date: date,
     to_date: date,
 ):
+    """ Get statistic """
+    """ TODO """
     ...

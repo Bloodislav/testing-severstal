@@ -1,10 +1,12 @@
-from typing import Any, Sequence
+from datetime import date
+from typing import Any
 
-from sqlalchemy import select, update
+from sqlalchemy import select, update, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.models import Roll
 from core.schemas.roll import RollAddDTO, RollDTO
+from core.schemas.roll import RollStatDTO, RollAverageValue
 
 async def create_roll(
     session: AsyncSession,
@@ -39,5 +41,14 @@ async def get_rolls(
     filter_data = filters.model_dump()
     filter_data = {key: value for (key, value) in filter_data.items() if value}
     res = await session.execute(select(Roll).limit(limit=limit).filter_by(**filter_data))
-    
     return res.scalars().all()
+
+
+async def get_stats(
+    session: AsyncSession,
+    from_date: date,
+    to_date: date,
+):
+   """ TODO """
+   ...
+   
