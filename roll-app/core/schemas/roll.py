@@ -20,22 +20,15 @@ class RollDTO(BaseModel):
     data_deleted: date | None = None
 
 
-class RollAverageValue(BaseModel):
+class RollStatDTO(BaseModel):
+    count_add: int
+    count_del: int
     mid_length: float
     mid_weight: float
-
-
-class RollMaxMin(BaseModel):
     max_length: int
     min_length: int
     max_weight: int
     min_weight: int
+    sum_length: int
     max_add_del: int
     min_add_del: int
-
-
-class RollStatDTO(BaseModel):
-    count_add: int
-    count_del: int
-    ave_value: RollAverageValue
-    max_min: RollMaxMin

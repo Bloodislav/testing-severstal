@@ -6,10 +6,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.models import db_helper
 from core.schemas.roll import RollAddDTO, RollDTO, RollStatDTO
-from crud import rolls as rolls_quary
+from crud.rolls import RollCrud
 
 router = APIRouter(tags=["Рулоны"])
-
 
 @router.post("", response_model=RollDTO)
 async def create_roll(
@@ -20,7 +19,7 @@ async def create_roll(
     roll_create: RollAddDTO,
 ):
     """Add new roll"""
-    user = await rolls_quary.create_roll(session=session, roll_create=roll_create)
+    user = await RollCrud.create_roll(session=session, roll_create=roll_create)
     return user
 
 
@@ -33,7 +32,7 @@ async def del_roll(
     roll_id: int,
 ):
     """Del roll"""
-    roll = await rolls_quary.edit_one_roll(
+    roll = await RollCrud.edit_one_roll(
         session=session,
         id=roll_id,
         data={"data_deleted": datetime.now(timezone.utc).date()},
@@ -53,7 +52,7 @@ async def get_rolls(
     ],
 ):
     """Get rolls with limit"""
-    result = await rolls_quary.get_rolls(session=session, filters=filters)
+    result = await RollCrud.get_rolls(session=session, filters=filters)
     return result
 
 
@@ -68,4 +67,5 @@ async def get_statistic(
 ):
     """Get statistic"""
     """ TODO """
-    ...
+    result = await RollCrud.get_stats(session, from_date, to_date)
+    return result

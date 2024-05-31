@@ -10,12 +10,16 @@ services:
     ports:
       - 5432:5432
 
-  pgadmin:
-    image: dpage/pgadmin4
-    env_file:
-      - .env
+  roll_api:
+    image: roll_api_v1
+    build:
+      context: .
+    container_name: roll_api_v1
+    depends_on:
+      - pg
+    command: ["/roll-app/scripts/run.sh"]
     ports:
-      - 5050:80
+      - 7777:8000
 
 volumes:
   postgresdata:

@@ -9,7 +9,9 @@ pydantic-settings = "^2.2.1"
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.30"}
 asyncpg = "^0.29.0"
 alembic = "^1.13.1"
+gunicorn = "^22.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4.2"
+pytest = "^8.2.1"
 

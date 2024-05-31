@@ -48,3 +48,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+print(f'{settings.db.url=}')
